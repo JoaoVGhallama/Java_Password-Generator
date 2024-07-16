@@ -5,6 +5,7 @@ public class CreatePassword {
         Password password = new Password();
 
         password.setValue(10);
+        password.setSelected(4);
         password.generatePassword();
         password.printPassword();
     }

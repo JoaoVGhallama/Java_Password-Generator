@@ -3,15 +3,21 @@ package passwordGen;
 public class Password {
     private int value;
     private int random;
+    private int selected;
     private String password = "";
 
     private String lower_case = "qwertyuiopasdfghjklzxcvbnm";
     private String upper_case = "QWERTYUIOPASDFGHJKLZXCVBNM";
     private String special = "!@#$%&";
+    private String numbers = "1234567890";
 
 
     public void setValue(int value){
         this.value = value;
+    }
+
+    public void setSelected(int selected){
+        this.selected = selected;
     }
 
     public int getValue(){
@@ -38,12 +44,16 @@ public class Password {
         return special;
     }
 
+    public String getNumbers(){
+        return numbers;
+    }
+
     public String generatePassword(){
         if (this.value <= 0){
             System.out.println("Please, insert an value greater than zero");
         }else {
             for (int i = 0; i < this.value; i++){
-                random = (int)(3 * Math.random());
+                random = (int)(this.selected * Math.random());
                 generateRandom();
             }
         }
@@ -63,6 +73,9 @@ public class Password {
             case 2:
                 random = (int)(special.length() * Math.random());
                 password += String.valueOf(special.charAt(random));
+                break;
+            case 3: random = (int)(numbers.length() * Math.random());
+                password += String.valueOf(numbers.charAt(random));
                 break;
         }
         return password;
